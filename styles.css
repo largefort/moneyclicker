@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    position: relative;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutorial-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+#dollarImage {
+    position: relative;
+    z-index: 2;
+    width: 100px;
+    height: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+#dollarImage:hover {
+    transform: scale(1.1);
+}
+
+#dollarImage:hover + #cursors .cursor {
+    animation-play-state: paused;
+}
+
+.cursor {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px; 
+    margin-left: -20px; 
+    background: url('cursor.png') no-repeat center;
+    background-size: contain;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
