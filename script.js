@@ -1,14 +1,6 @@
 let money = 0;
 let clickValue = 1;
 let cursorsCount = 0;
-let tutorialStage = 0;
-const tutorialSteps = [
-    "This is your money. You earn more by clicking the dollar image.",
-    "You can buy a business to earn money automatically.",
-    "Upgrades can increase the money you get per click. Try purchasing one!",
-    "Cursors hover around the dollar, giving you more money per second.",
-    ""
-];
 
 const cursorsContainer = document.getElementById("cursors");
 
@@ -18,19 +10,18 @@ function loadGame() {
         const gameData = JSON.parse(savedData);
         money = gameData.money;
         clickValue = gameData.clickValue;
-        tutorialStage = gameData.tutorialStage;
         cursorsCount = gameData.cursorsCount || 0;
         for (let i = 0; i < cursorsCount; i++) {
             addCursor();
         }
     }
+    updateDisplay();
 }
 
 function saveGame() {
     const gameData = {
         money,
         clickValue,
-        tutorialStage,
         cursorsCount
     };
     localStorage.setItem('moneyClicker', JSON.stringify(gameData));
@@ -71,7 +62,8 @@ function addCursor() {
     const cursorElem = document.createElement("div");
     cursorElem.className = "cursor";
     const rotateDegree = (360 / cursorsCount) * (cursorsCount - 1);
-    cursorElem.style.transform = `rotate(${rotateDegree}deg) translate(60px) rotate(-${rotateDegree}deg)`;
+    cursorElem.style.transform = `translate(-50%, -50%) rotate(${rotateDegree}deg) translate(50px) rotate(-${rotateDegree}deg)`;
+    cursorElem.style.animationDuration = `${10 - (cursorsCount * 0.5)}s`;
     cursorsContainer.appendChild(cursorElem);
 }
 
@@ -80,17 +72,6 @@ function updateDisplay() {
     saveGame();
 }
 
-function advanceTutorial() {
-    if (tutorialStage < tutorialSteps.length - 1) {
-        document.getElementById("tutorialText").textContent = tutorialSteps[tutorialStage];
-        tutorialStage++;
-    } else {
-        document.getElementById("tutorial").style.display = "none";
-    }
-    saveGame();
-}
-
 // Initial calls
 loadGame();
-advanceTutorial();
 setInterval(saveGame, 1000);  // Saving game state every second.
