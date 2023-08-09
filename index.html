@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Clicker Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Money Clicker</h1>
+        <p id="moneyDisplay">Money: <span id="money">0</span></p>
+        <div id="cursors"></div>
+        <img id="dollarImage" src="dollar.jpg" alt="Dollar" onclick="earnMoney()" />
+        <div id="shop">
+            <button id="buyBusiness" onclick="purchaseBusiness()">Buy Business ($10)</button>
+            <button id="buyUpgrade" onclick="purchaseUpgrade()">Double Click Value ($40)</button>
+            <button id="buyCursor" onclick="purchaseCursor()">Add Cursor ($25)</button>
+        </div>
+    </div>
+
+    <!-- Tutorial Overlay -->
+    <div id="tutorial" class="overlay">
+        <div class="tutorial-content">
+            <h2>Welcome to Money Clicker!</h2>
+            <p id="tutorialText">Press 'Next' to begin the tutorial.</p>
+            <button onclick="advanceTutorial()">Next</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
